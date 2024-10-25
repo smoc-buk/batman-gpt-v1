@@ -5,12 +5,25 @@ require 'bundler/setup'
 require 'webrick'
 require 'webrick/https'
 require 'openssl'
+require 'rack/cors'
+
 require_relative 'ticket_loader'
 require_relative 'embedding_generator'
 require_relative 'db_handler'
 require_relative 'cosine_similarity'
 
+use Rack::Cors do
+  allow do
+    origins '*'  # Permitir solicitudes de cualquier origen
+    resource '*', headers: :any, methods: [:get, :post, :options]
+  end
+end
+
 configure do
+
+  # Configuración de CORS
+
+
   set :port, 4567 
   set :bind, '0.0.0.0'
 
