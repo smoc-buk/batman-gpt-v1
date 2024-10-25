@@ -2,10 +2,23 @@ require 'sinatra'
 require 'json'
 require 'byebug'
 require 'bundler/setup'
+require 'webrick'
+require 'webrick/https'
+require 'openssl'
 require_relative 'ticket_loader'
 require_relative 'embedding_generator'
 require_relative 'db_handler'
 require_relative 'cosine_similarity'
+
+configure do
+  set :port, 4567 
+  set :bind, '0.0.0.0'
+
+  set :server, 'webrick'
+  set :ssl_certificate, OpenSSL::X509::Certificate.new(File.read("server.crt"))
+  set :ssl_key, OpenSSL::PKey::RSA.new(File.read("server.key"))
+end
+
 
 DBHandler.setup_database
 
