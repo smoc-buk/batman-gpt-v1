@@ -41,12 +41,14 @@ GEM
       rack-session (>= 2.0.0, < 3)
       tilt (~> 2.0)
     sqlite3 (2.1.1-arm64-darwin)
+    sqlite3 (2.1.1-x86_64-linux-gnu)
     tilt (2.4.0)
     uri (0.13.1)
     webrick (1.8.2)
 
 PLATFORMS
   arm64-darwin-23
+  x86_64-linux
 
 DEPENDENCIES
   byebug
